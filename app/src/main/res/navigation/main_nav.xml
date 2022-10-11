@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/singupFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.finalproject.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_onBordingFragment"
+            app:destination="@id/onBordingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBordingFragment"
+        android:name="com.example.finalproject.OnBordingFragment"
+        android:label="fragment_on_bording"
+        tools:layout="@layout/fragment_on_bording" />
+    <fragment
+        android:id="@+id/singupFragment"
+        android:name="com.example.finalproject.SingupFragment"
+        android:label="fragment_singup"
+        tools:layout="@layout/fragment_singup" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.finalproject.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+</navigation>
