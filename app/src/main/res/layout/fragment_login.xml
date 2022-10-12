@@ -58,7 +58,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -67,7 +67,6 @@
                 android:outlineAmbientShadowColor="@color/green"
                 android:paddingBottom="20dp"
                 android:textColor="#181725" />
-            <!-- email -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -100,7 +99,7 @@
                 android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/start_btn"
+                android:id="@+id/login_btn"
                 android:layout_width="match_parent"
                 android:layout_height="67dp"
                 android:layout_marginTop="20dp"
@@ -125,6 +124,7 @@
                     android:text="Don’t have an account? " />
 
                 <TextView
+                    android:id="@+id/tv_signup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="signup"
