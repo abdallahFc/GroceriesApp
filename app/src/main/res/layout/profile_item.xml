@@ -5,9 +5,11 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,16 +19,21 @@
             android:id="@+id/imageView10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="5dp"
             android:layout_weight="2"
-            app:srcCompat="@drawable/ic_plues" />
+            app:srcCompat="@drawable/ic_orders_icon" />
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textColor="#181725"
+            android:textStyle="bold"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:text="Orders" />
 
         <ImageView
             android:id="@+id/imageView11"
@@ -36,4 +43,12 @@
             android:layout_weight="2"
             app:srcCompat="@drawable/ic_back_arrow" />
     </LinearLayout>
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#E2E2E2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
 </androidx.constraintlayout.widget.ConstraintLayout>
