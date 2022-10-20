@@ -3,63 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/profileFragment">
 
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.example.finalproject.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
-        <action
-            android:id="@+id/action_splashFragment_to_onBordingFragment"
-            app:destination="@id/onBordingFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/onBordingFragment"
-        android:name="com.example.finalproject.OnBordingFragment"
-        android:label="fragment_on_bording"
-        tools:layout="@layout/fragment_on_bording" >
-        <action
-            android:id="@+id/action_onBordingFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/singupFragment"
-        android:name="com.example.finalproject.SingupFragment"
-        android:label="fragment_singup"
-        tools:layout="@layout/fragment_singup" >
-        <action
-            android:id="@+id/action_singupFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_singupFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.finalproject.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_singupFragment"
-            app:destination="@id/singupFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.finalproject.HomeFragment"
+        android:name="com.example.finalproject.ui.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_catagoreyFragment"
+            app:destination="@id/catagoreyFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.example.finalproject.FavoritesFragment"
+        android:name="com.example.finalproject.ui.fragment.FavoritesFragment"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.finalproject.ProfileFragment"
+        android:name="com.example.finalproject.ui.fragment.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/catagoreyFragment"
+        android:name="com.example.finalproject.ui.fragment.CatagoreyFragment"
+        android:label="fragment_catagorey"
+        tools:layout="@layout/fragment_catagorey" />
+    <fragment
+        android:id="@+id/prefrenceFragment"
+        android:name="com.example.finalproject.ui.fragment.PrefrenceFragment"
+        android:label="fragment_prefrence"
+        tools:layout="@layout/fragment_prefrence" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/produectFragment2"
+        android:name="com.example.finalproject.ui.fragment.ProduectFragment"
+        android:label="fragment_produect"
+        tools:layout="@layout/fragment_produect" >
+        <action
+            android:id="@+id/action_produectFragment2_to_prefrenceFragment"
+            app:destination="@id/prefrenceFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.finalproject.ui.fragment.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>
