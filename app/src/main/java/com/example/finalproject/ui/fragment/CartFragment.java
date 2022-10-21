@@ -70,6 +70,7 @@ public class CartFragment extends Fragment implements RemoveClick {
             public void onClick(View view) {
                 BottomSheetDialog bottomSheetDialog=new BottomSheetDialog(activity,R.style.bottomSheet);
                 View sheetView = LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet, null);
+                price=0;
                 for (int i=0;i<list.size();i++){
                     String[] res=list.get(i).getItemPrice().split(" ");
                     double p= Double.parseDouble(res[1]);

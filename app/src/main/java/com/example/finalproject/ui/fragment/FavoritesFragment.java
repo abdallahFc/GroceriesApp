@@ -30,7 +30,7 @@ import java.util.List;
 public class FavoritesFragment extends Fragment {
     FragmentFavoritesBinding binding;
     FavAdapter adapter;
-    public MainActivity activity;
+    MainActivity activity;
     List<Fav> list=new ArrayList<>();
     List<Cart> cartList=new ArrayList<>();
 
@@ -67,7 +67,7 @@ public class FavoritesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 for (int i=0;i<list.size();i++){
-                    cartList.add(new Cart(list.get(i).getId(),list.get(i).getItemTitle(),list.get(i).getItemPrice(),list.get(i).getItemRate(),list.get(i).getItemImg()));
+                    cartList.add(new Cart(list.get(i).getId(),list.get(i).getItemTitle(),list.get(i).getItemPrice(),list.get(i).getItemRate(),list.get(i).getItemImg(),"1"));
                 }
                     try {
                         new Thread(new Runnable() {

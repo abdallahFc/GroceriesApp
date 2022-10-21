@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_80sdp">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/cart_Image"
@@ -20,15 +20,15 @@
         android:id="@+id/cart_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_2sdp"
         android:layout_marginEnd="25dp"
         android:text="Sprite Can"
         android:textColor="@color/black"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/cart_Image"
-        app:layout_constraintTop_toTopOf="@id/cart_Image" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -36,10 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="31dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintLeft_toRightOf="@id/cart_Image"
         app:layout_constraintTop_toBottomOf="@id/cart_title">
 
@@ -79,15 +78,14 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <View
-        android:id="@+id/view4"
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="17dp"
         android:layout_marginEnd="20dp"
         android:background="#E2E2E2"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cart_Image" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

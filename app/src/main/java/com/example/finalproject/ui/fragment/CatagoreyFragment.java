@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.finalproject.ui.adapter.CatagoryAdaptar;
 import com.example.finalproject.data.network.produect.ProducetClient;
 import com.example.finalproject.databinding.FragmentCatagoreyBinding;
+import com.example.finalproject.viewModel.ProduectViewModel;
 
 import java.util.ArrayList;
 
@@ -23,6 +26,7 @@ import retrofit2.Response;
 public class CatagoreyFragment extends Fragment {
     FragmentCatagoreyBinding binding;
     CatagoryAdaptar adaptar;
+    ProduectViewModel produectViewModel;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,20 +40,14 @@ public class CatagoreyFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         adaptar=new CatagoryAdaptar();
-        ProducetClient.getInstance().getCatagory().enqueue(new Callback<ArrayList<String>>() {
+        produectViewModel = new ViewModelProvider(this).get(ProduectViewModel.class);
+        produectViewModel.getCatagory();
+        produectViewModel.getCatagorys().observe(getActivity(), new Observer<ArrayList<String>>() {
             @Override
-            public void onResponse(Call<ArrayList<String>> call, Response<ArrayList<String>> response) {
-                if(response.isSuccessful()){
-                    adaptar.setList(response.body());
-                    binding.recycleView.setAdapter(adaptar);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<String>> call, Throwable t) {
-
+            public void onChanged(ArrayList<String> strings) {
+                adaptar.setList(strings);
+                binding.recycleView.setAdapter(adaptar);
             }
         });
-
     }
 }

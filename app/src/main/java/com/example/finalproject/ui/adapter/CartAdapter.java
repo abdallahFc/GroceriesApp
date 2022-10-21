@@ -37,6 +37,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder>{
         holder.title.setText(list.get(position).getItemTitle());
         holder.rate.setText(list.get(position).getItemRate());
         holder.price.setText(list.get(position).getItemPrice());
+        holder.count.setText(list.get(position).getCount());
         Picasso.get().load(list.get(position).getItemImg()).into(holder.imageView);
         holder.remove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +57,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder>{
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        TextView title,price,rate;
+        TextView title,price,rate,count;
         ImageView imageView,remove;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,6 +66,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder>{
             rate=itemView.findViewById(R.id.cart_rate);
             imageView=itemView.findViewById(R.id.cart_Image);
             remove=itemView.findViewById(R.id.remove_item);
+            count=itemView.findViewById(R.id.count);
         }
     }
 }

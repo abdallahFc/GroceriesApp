@@ -12,13 +12,23 @@ public class Cart {
     private String itemPrice;
     private String itemRate;
     private String itemImg;
+    private String count;
 
-    public Cart(int id, String itemTitle, String itemPrice, String itemRate, String itemImg) {
+    public Cart(int id, String itemTitle, String itemPrice, String itemRate, String itemImg, String count) {
         this.id = id;
         this.itemTitle = itemTitle;
         this.itemPrice = itemPrice;
         this.itemRate = itemRate;
         this.itemImg = itemImg;
+        this.count = count;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
     }
 
     public int getId() {

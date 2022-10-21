@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_catagoreyFragment"
             app:destination="@id/catagoreyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_prefrenceFragment"
+            app:destination="@id/prefrenceFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"

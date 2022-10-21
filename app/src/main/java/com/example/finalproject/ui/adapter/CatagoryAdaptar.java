@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.finalproject.R;
@@ -36,6 +37,7 @@ public class CatagoryAdaptar extends RecyclerView.Adapter<CatagoryAdaptar.viewHo
 
     public class viewHolder extends RecyclerView.ViewHolder {
         TextView title;
+        CardView cardView;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             title=itemView.findViewById(R.id.catagory_title);
