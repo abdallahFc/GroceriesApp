@@ -1,4 +1,4 @@
-package com.example.finalproject.data.local;
+package com.example.finalproject.data.local.sharedPre;
 
 import android.content.Context;
 import android.content.SharedPreferences;

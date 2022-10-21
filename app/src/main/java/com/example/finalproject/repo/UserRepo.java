@@ -19,7 +19,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class UserRepo {
     private final MutableLiveData<String> signinResponse = new MutableLiveData<>();
     private final MutableLiveData<String> loginResponse = new MutableLiveData<>();
-    private final MutableLiveData<String> err = new MutableLiveData<>();
     private final MutableLiveData<String> error = new MutableLiveData<>();
     private final MutableLiveData<String> loginError = new MutableLiveData<>();
 

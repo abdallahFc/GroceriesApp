@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.finalproject.OnItemClick;
+import com.example.finalproject.ui.OnItemClick;
 import com.example.finalproject.R;
 import com.example.finalproject.model.ProducetModel;
 import com.squareup.picasso.Picasso;

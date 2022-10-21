@@ -1,5 +1,6 @@
 package com.example.finalproject.ui.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,11 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.finalproject.OnItemClick;
+import com.example.finalproject.ui.OnItemClick;
 import com.example.finalproject.R;
 import com.example.finalproject.data.network.produect.ProducetClient;
 import com.example.finalproject.databinding.FragmentHomeBinding;
 import com.example.finalproject.model.ProducetModel;
+import com.example.finalproject.ui.activity.MainActivity;
 import com.example.finalproject.ui.adapter.CatagoryHomeAdapter;
 import com.example.finalproject.ui.adapter.ProducetAdapter;
 
@@ -32,6 +34,7 @@ public class HomeFragment extends Fragment implements OnItemClick {
     FragmentHomeBinding binding;
     ProducetAdapter adapter;
     CatagoryHomeAdapter cAdapter;
+    public MainActivity activity;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,6 +42,11 @@ public class HomeFragment extends Fragment implements OnItemClick {
         binding=FragmentHomeBinding.inflate(inflater,container,false);
         View view=binding.getRoot();
         return view;
+    }
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.activity = (MainActivity) activity;
     }
 
     @Override

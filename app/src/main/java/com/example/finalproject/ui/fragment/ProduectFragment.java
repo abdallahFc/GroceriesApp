@@ -6,15 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.finalproject.OnItemClick;
-import com.example.finalproject.R;
+import com.example.finalproject.ui.OnItemClick;
 import com.example.finalproject.data.network.produect.ProducetClient;
 import com.example.finalproject.databinding.FragmentProduectBinding;
 import com.example.finalproject.model.ProducetModel;

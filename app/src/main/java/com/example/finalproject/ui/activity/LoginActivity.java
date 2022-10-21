@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.finalproject.data.local.SaveData;
+import com.example.finalproject.data.local.sharedPre.SaveData;
 import com.example.finalproject.databinding.ActivityLoginBinding;
 import com.example.finalproject.viewModel.UserViewModel;
 

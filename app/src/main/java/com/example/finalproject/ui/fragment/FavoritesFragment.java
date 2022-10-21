@@ -1,66 +1,101 @@
 package com.example.finalproject.ui.fragment;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.finalproject.R;
+import com.example.finalproject.data.local.room.Cart;
+import com.example.finalproject.data.local.room.CartDataBase;
+import com.example.finalproject.data.local.room.Fav;
+import com.example.finalproject.data.local.room.FavDataBase;
+import com.example.finalproject.databinding.FragmentFavoritesBinding;
+import com.example.finalproject.ui.activity.MainActivity;
+import com.example.finalproject.ui.adapter.FavAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FavoritesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class FavoritesFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public FavoritesFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FavoritesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FavoritesFragment newInstance(String param1, String param2) {
-        FavoritesFragment fragment = new FavoritesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    FragmentFavoritesBinding binding;
+    FavAdapter adapter;
+    public MainActivity activity;
+    List<Fav> list=new ArrayList<>();
+    List<Cart> cartList=new ArrayList<>();
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.activity = (MainActivity) activity;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorites, container, false);
+        binding=FragmentFavoritesBinding.inflate(inflater, container, false);
+        View view=binding.getRoot();
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        adapter=new FavAdapter();
+        FavDataBase.getInstance(getContext()).Doa().getAllItems().observe(activity, new Observer<List<Fav>>() {
+            @Override
+            public void onChanged(List<Fav> favs) {
+                list=favs;
+                Toast.makeText(activity,favs.size()+"",Toast.LENGTH_LONG).show();
+                adapter.setList(favs);
+                binding.recyclerView3.setAdapter(adapter);
+                binding.recyclerView3.setLayoutManager(new LinearLayoutManager(getContext()));
+            }
+        });
+            binding.addAllCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (int i=0;i<list.size();i++){
+                    cartList.add(new Cart(list.get(i).getId(),list.get(i).getItemTitle(),list.get(i).getItemPrice(),list.get(i).getItemRate(),list.get(i).getItemImg()));
+                }
+                    try {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                for (int i=0;i<cartList.size();i++){
+                                    CartDataBase.getInstance(getContext()).Doa().insertItem(cartList.get(i));
+                                }
+                            }
+                        }).start();
+
+                    }catch (Exception e){
+
+                    }
+
+                try {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            FavDataBase.getInstance(getContext()).Doa().deleteItem();
+                        }
+                    }).start();
+
+                }catch (Exception e){
+
+                }
+
+            }
+        });
     }
 }

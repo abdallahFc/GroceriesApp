@@ -1,52 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.fragment.PrefrenceFragment">
-
-
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="17dp"
-        android:src="@drawable/ic_fav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tx_title"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_300sdp"
+        android:layout_height="350dp"
         android:scaleType="fitXY"
         android:src="@drawable/pro_img"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/pro" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tx_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Minimal Stand"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@drawable/ic_fav" />
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/tx_title"
+        android:id="@+id/tx_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:text="Minimal Stand"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:layout_marginStart="15dp"
+        android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_title" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,9 +64,9 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/remove"
-            android:background="@drawable/buttom_pre2"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:background="@drawable/buttom_pre2"
             android:onClick="action"
             android:src="@drawable/ic_min"
             android:text="Button" />
@@ -68,21 +77,21 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:background="@drawable/buttom_pre"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:text="0" />
+            android:background="@drawable/buttom_pre"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/add"
-            android:background="@drawable/buttom_pre2"
-            android:layout_marginTop="3dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginTop="3dp"
             android:layout_marginEnd="14dp"
+            android:background="@drawable/buttom_pre2"
             android:onClick="action"
             android:src="@drawable/ic_plu"
             android:text="Button" />
@@ -112,62 +121,58 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-
-    <TextView
-        android:id="@+id/dicrption"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Produect Detail"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_detialis" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_margin="15dp"
-        android:text="TextView kdfjifejoroeoreoreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeerfgfgfgfggfgflgkfokrokggjiietiejioerjteritisigerigjeigeigiegireiierge"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:id="@+id/dicrption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView kdfjifejoroeoreoreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeerfgfgfgfggfgflgkfokrokggjiietiejioerjteritisigerigjeigeigiegireiierge" />
+
+    </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/login_btn"
+        android:id="@+id/add_cart"
         android:layout_width="match_parent"
         android:layout_height="67dp"
-        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/buttom"
         android:text="Add to Basket"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dicrption" />
-
-    <TextView
-        android:id="@+id/tx_rate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:textSize="16sp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_title" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textSize="16dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:text="Produect Detail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
-
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:src="@drawable/ic_detialis"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
+        android:textSize="16sp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

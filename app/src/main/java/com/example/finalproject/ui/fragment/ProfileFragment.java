@@ -1,6 +1,5 @@
 package com.example.finalproject.ui.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,12 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.finalproject.R;
 import com.example.finalproject.data.local.ProfileData;
-import com.example.finalproject.data.local.SaveData;
+import com.example.finalproject.data.local.sharedPre.SaveData;
 import com.example.finalproject.databinding.FragmentProfileBinding;
 import com.example.finalproject.ui.activity.LoginActivity;
-import com.example.finalproject.ui.activity.MainActivity;
 import com.example.finalproject.ui.adapter.ProfileAdaptar;
 
 
