@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -23,6 +24,8 @@ import com.example.finalproject.data.local.room.FavDataBase;
 import com.example.finalproject.databinding.FragmentFavoritesBinding;
 import com.example.finalproject.ui.activity.MainActivity;
 import com.example.finalproject.ui.adapter.FavAdapter;
+import com.example.finalproject.viewModel.CartViewModel;
+import com.example.finalproject.viewModel.FavViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +36,8 @@ public class FavoritesFragment extends Fragment {
     MainActivity activity;
     List<Fav> list=new ArrayList<>();
     List<Cart> cartList=new ArrayList<>();
-
+    FavViewModel favViewModel;
+    CartViewModel cartViewModel;
     @Override
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
@@ -53,11 +57,20 @@ public class FavoritesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         adapter=new FavAdapter();
-        FavDataBase.getInstance(getContext()).Doa().getAllItems().observe(activity, new Observer<List<Fav>>() {
+        favViewModel = new ViewModelProvider(this).get(FavViewModel.class);
+        cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+        favViewModel.getAll(getContext());
+        favViewModel.getItems().observe(activity, new Observer<List<Fav>>() {
             @Override
             public void onChanged(List<Fav> favs) {
-                list=favs;
-                Toast.makeText(activity,favs.size()+"",Toast.LENGTH_LONG).show();
+                if (!favs.isEmpty()) {
+                    binding.imageView5.setVisibility(View.GONE);
+                    binding.textView9.setVisibility(View.GONE);
+                } else {
+                    binding.imageView5.setVisibility(View.VISIBLE);
+                    binding.textView9.setVisibility(View.VISIBLE);
+                }
+                list = favs;
                 adapter.setList(favs);
                 binding.recyclerView3.setAdapter(adapter);
                 binding.recyclerView3.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -69,32 +82,11 @@ public class FavoritesFragment extends Fragment {
                 for (int i=0;i<list.size();i++){
                     cartList.add(new Cart(list.get(i).getId(),list.get(i).getItemTitle(),list.get(i).getItemPrice(),list.get(i).getItemRate(),list.get(i).getItemImg(),"1"));
                 }
-                    try {
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                for (int i=0;i<cartList.size();i++){
-                                    CartDataBase.getInstance(getContext()).Doa().insertItem(cartList.get(i));
-                                }
-                            }
-                        }).start();
-
-                    }catch (Exception e){
-
-                    }
-
-                try {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            FavDataBase.getInstance(getContext()).Doa().deleteItem();
-                        }
-                    }).start();
-
-                }catch (Exception e){
-
+                for (int i = 0; i < cartList.size(); i++) {
+                  cartViewModel.insert(cartList.get(i),getContext());
                 }
-
+                favViewModel.delete(getContext());
+                Toast.makeText(activity,  "All item add ro cart", Toast.LENGTH_LONG).show();
             }
         });
     }

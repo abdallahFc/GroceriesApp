@@ -7,14 +7,18 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
+
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Observable;
+
 @Dao
 public interface CartDoa {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertItem(Cart cart);
+    Completable insertItem(Cart cart);
 
     @Query("DELETE FROM cart_table WHERE id =:id")
-    void deleteItem(int id);
+    Completable deleteItem(int id);
 
     @Query("SELECT * FROM cart_table")
-    LiveData<List<Cart>> getAllItems();
+    Observable<List<Cart>> getAllItems();
 }

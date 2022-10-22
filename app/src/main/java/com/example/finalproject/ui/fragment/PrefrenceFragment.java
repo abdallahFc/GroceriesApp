@@ -24,6 +24,8 @@ import com.example.finalproject.data.network.produect.ProducetClient;
 import com.example.finalproject.databinding.FragmentPrefrenceBinding;
 import com.example.finalproject.model.ProducetModel;
 import com.example.finalproject.ui.activity.MainActivity;
+import com.example.finalproject.viewModel.CartViewModel;
+import com.example.finalproject.viewModel.FavViewModel;
 import com.example.finalproject.viewModel.ProduectViewModel;
 import com.squareup.picasso.Picasso;
 
@@ -36,6 +38,8 @@ public class PrefrenceFragment extends Fragment {
     ProducetModel producetModel;
     String title,price,img,rate;
     ProduectViewModel produectViewModel;
+    CartViewModel cartViewModel;
+    FavViewModel favViewModel;
     MainActivity activity;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,6 +61,8 @@ public class PrefrenceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         PrefrenceFragmentArgs args=PrefrenceFragmentArgs.fromBundle(getArguments());
         produectViewModel = new ViewModelProvider(this).get(ProduectViewModel.class);
+        cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
+        favViewModel = new ViewModelProvider(this).get(FavViewModel.class);
         int id=args.getId();
         produectViewModel.getSomeProduect(id);
         produectViewModel.getSomeProduect().observe(activity, new Observer<ProducetModel>() {
@@ -113,17 +119,30 @@ public class PrefrenceFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Cart cart=new Cart(id,title,binding.txPrice.getText().toString(),rate,img,binding.txCount.getText().toString());
-                try {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            CartDataBase.getInstance(getContext()).Doa().insertItem(cart);
-                        }
-                    }).start();
-                    Toast.makeText(getContext(),"inserted",Toast.LENGTH_SHORT).show();
-                }catch (Exception e){
-                    Toast.makeText(getContext(),"error",Toast.LENGTH_SHORT).show();
-                }
+                cartViewModel.insert(cart,getContext());
+                cartViewModel.getmsg().observe(activity, new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+                        Toast.makeText(activity,s,Toast.LENGTH_SHORT).show();
+                    }
+                });
+                cartViewModel.getInsertErorr().observe(activity, new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+                        Toast.makeText(activity,s,Toast.LENGTH_SHORT).show();
+                    }
+                });
+//                try {
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            CartDataBase.getInstance(getContext()).Doa().insertItem(cart);
+//                        }
+//                    }).start();
+//                    Toast.makeText(getContext(),"inserted",Toast.LENGTH_SHORT).show();
+//                }catch (Exception e){
+//                    Toast.makeText(getContext(),"error",Toast.LENGTH_SHORT).show();
+//                }
             }
         });
         binding.ivFav.setOnClickListener(new View.OnClickListener() {
@@ -131,17 +150,24 @@ public class PrefrenceFragment extends Fragment {
             public void onClick(View view) {
                 Fav fav=new Fav(id,title,price,rate,img);
                 binding.ivFav.setColorFilter(R.color.red);
-                try {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            FavDataBase.getInstance(getContext()).Doa().insertItem(fav);
-                        }
-                    }).start();
-                    Toast.makeText(getContext(),"inserted",Toast.LENGTH_SHORT).show();
-                }catch (Exception e){
-                    Toast.makeText(getContext(),"error",Toast.LENGTH_SHORT).show();
-                }
+                favViewModel.insert(fav,getContext());
+                favViewModel.getmsg().observe(activity, new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+                        Toast.makeText(activity,s,Toast.LENGTH_SHORT).show();
+                    }
+                });
+//                try {
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            FavDataBase.getInstance(getContext()).Doa().insertItem(fav);
+//                        }
+//                    }).start();
+//                    Toast.makeText(getContext(),"inserted",Toast.LENGTH_SHORT).show();
+//                }catch (Exception e){
+//                    Toast.makeText(getContext(),"error",Toast.LENGTH_SHORT).show();
+//                }
             }
         });
     }

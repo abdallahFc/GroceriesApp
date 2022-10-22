@@ -8,14 +8,17 @@ import androidx.room.Query;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Observable;
+
 @Dao
 public interface FavDoa {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertItem(Fav fav);
+    Completable insertItem(Fav fav);
 
     @Query("DELETE FROM Fav_table")
-    void deleteItem();
+    Completable deleteItem();
 
     @Query("SELECT * FROM Fav_table")
-    LiveData<List<Fav>> getAllItems();
+    Observable<List<Fav>> getAllItems();
 }
