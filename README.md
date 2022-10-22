@@ -10,4 +10,5 @@
 • View Binding <br />
 • Recycler View  <br />
 • Picasso <br />
+• Bottom Sheet <br />
 
